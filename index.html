@@ -1,0 +1,2681 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description"
+        content="Tushar Shaikh – Student, Developer, and Tech Enthusiast from India. Explore my portfolio, skills, and projects." />
+    <meta name="keywords" content="Tushar Shaikh, developer, student, portfolio, web development, India" />
+    <meta name="author" content="Tushar Shaikh" />
+    <title>Tushar Shaikh | Portfolio</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Orbitron:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@300;400;500&display=swap"
+        rel="stylesheet" />
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+    <style>
+        /* ══════════════════════════════════════════
+           CSS VARIABLES & RESET
+        ══════════════════════════════════════════ */
+        :root {
+            --bg-primary: #030712;
+            --bg-secondary: #0a0f1e;
+            --bg-card: rgba(10, 20, 40, 0.6);
+            --neon-blue: #00d4ff;
+            --neon-blue-dim: rgba(0, 212, 255, 0.15);
+            --neon-blue-glow: rgba(0, 212, 255, 0.4);
+            --accent-purple: #7c3aed;
+            --accent-cyan: #06b6d4;
+            --text-primary: #e2e8f0;
+            --text-secondary: #94a3b8;
+            --text-muted: #475569;
+            --border-glow: rgba(0, 212, 255, 0.2);
+            --glass-bg: rgba(0, 212, 255, 0.03);
+            --shadow-glow: 0 0 30px rgba(0, 212, 255, 0.15);
+            --font-display: 'Orbitron', sans-serif;
+            --font-body: 'Space Grotesk', sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scrollbar-width: thin;
+            scrollbar-color: var(--neon-blue) var(--bg-secondary);
+        }
+
+        html::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        html::-webkit-scrollbar-track {
+            background: var(--bg-secondary);
+        }
+
+        html::-webkit-scrollbar-thumb {
+            background: var(--neon-blue);
+            border-radius: 2px;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Animated starfield background */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background:
+                radial-gradient(ellipse 80% 80% at 50% -20%, rgba(0, 212, 255, 0.04) 0%, transparent 60%),
+                radial-gradient(ellipse 60% 60% at 80% 50%, rgba(124, 58, 237, 0.03) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* ══════════════════════════════════════════
+           CANVAS / PARTICLES BACKGROUND
+        ══════════════════════════════════════════ */
+        #particles-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+            opacity: 0.4;
+        }
+
+        /* ══════════════════════════════════════════
+           NAVBAR
+        ══════════════════════════════════════════ */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 20px 0;
+            transition: var(--transition);
+            font-family: var(--font-mono);
+        }
+
+        .navbar.scrolled {
+            padding: 12px 0;
+            background: rgba(3, 7, 18, 0.85);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-glow);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-logo {
+            font-family: var(--font-display);
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--neon-blue);
+            text-decoration: none;
+            letter-spacing: 2px;
+            text-shadow: 0 0 20px var(--neon-blue-glow);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 8px;
+        }
+
+        .nav-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.78rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            padding: 8px 16px;
+            border-radius: 4px;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-link::before {
+            content: '';
+            position: absolute;
+            bottom: 4px;
+            left: 50%;
+            right: 50%;
+            height: 1px;
+            background: var(--neon-blue);
+            transition: var(--transition);
+            box-shadow: 0 0 6px var(--neon-blue);
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--neon-blue);
+        }
+
+        .nav-link:hover::before,
+        .nav-link.active::before {
+            left: 16px;
+            right: 16px;
+        }
+
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: 1px solid var(--border-glow);
+            padding: 8px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        .hamburger,
+        .hamburger::before,
+        .hamburger::after {
+            display: block;
+            width: 22px;
+            height: 2px;
+            background: var(--neon-blue);
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .hamburger::before,
+        .hamburger::after {
+            content: '';
+            position: absolute;
+        }
+
+        .hamburger::before {
+            top: -7px;
+        }
+
+        .hamburger::after {
+            top: 7px;
+        }
+
+        .nav-toggle.open .hamburger {
+            background: transparent;
+        }
+
+        .nav-toggle.open .hamburger::before {
+            transform: rotate(45deg);
+            top: 0;
+        }
+
+        .nav-toggle.open .hamburger::after {
+            transform: rotate(-45deg);
+            top: 0;
+        }
+
+        /* ══════════════════════════════════════════
+           HERO SECTION
+        ══════════════════════════════════════════ */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .hero-grid-lines {
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(0, 212, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 212, 255, 0.03) 1px, transparent 1px);
+            background-size: 60px 60px;
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding: 0 24px;
+            max-width: 900px;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--neon-blue-dim);
+            border: 1px solid var(--border-glow);
+            border-radius: 100px;
+            padding: 6px 16px;
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--neon-blue);
+            letter-spacing: 1px;
+            margin-bottom: 28px;
+            animation: fadeInDown 0.6s ease forwards;
+        }
+
+        .hero-badge .dot {
+            width: 6px;
+            height: 6px;
+            background: var(--neon-blue);
+            border-radius: 50%;
+            animation: pulse-dot 1.5s infinite;
+        }
+
+        .hero-greeting {
+            font-family: var(--font-mono);
+            color: var(--neon-blue);
+            font-size: 1rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+            opacity: 0;
+            animation: fadeInUp 0.6s 0.2s ease forwards;
+        }
+
+        .hero-name {
+            font-family: var(--font-display);
+            font-size: clamp(2.5rem, 8vw, 5.5rem);
+            font-weight: 900;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            line-height: 1;
+            margin-bottom: 20px;
+            opacity: 0;
+            animation: fadeInUp 0.6s 0.4s ease forwards;
+            background: linear-gradient(135deg, #fff 0%, var(--neon-blue) 50%, var(--accent-purple) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            filter: drop-shadow(0 0 40px rgba(0, 212, 255, 0.3));
+        }
+
+        .hero-tagline {
+            font-size: 1.4rem;
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+            min-height: 2rem;
+            opacity: 0;
+            animation: fadeInUp 0.6s 0.6s ease forwards;
+        }
+
+        .cursor-blink {
+            color: var(--neon-blue);
+            animation: blink 1s step-end infinite;
+            text-shadow: 0 0 10px var(--neon-blue);
+        }
+
+        .hero-description {
+            font-size: 1rem;
+            color: var(--text-muted);
+            max-width: 500px;
+            margin: 0 auto 40px;
+            opacity: 0;
+            animation: fadeInUp 0.6s 0.8s ease forwards;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+            opacity: 0;
+            animation: fadeInUp 0.6s 1s ease forwards;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-muted);
+            font-size: 0.7rem;
+            font-family: var(--font-mono);
+            letter-spacing: 2px;
+            z-index: 2;
+        }
+
+        .mouse {
+            width: 22px;
+            height: 36px;
+            border: 1.5px solid var(--border-glow);
+            border-radius: 11px;
+            display: flex;
+            justify-content: center;
+            padding-top: 6px;
+        }
+
+        .wheel {
+            width: 3px;
+            height: 8px;
+            background: var(--neon-blue);
+            border-radius: 2px;
+            animation: scroll-wheel 1.5s ease infinite;
+        }
+
+        /* ══════════════════════════════════════════
+           BUTTONS
+        ══════════════════════════════════════════ */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 28px;
+            border-radius: 4px;
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+            border: none;
+        }
+
+        .btn-primary {
+            background: var(--neon-blue);
+            color: var(--bg-primary);
+            box-shadow: 0 0 20px var(--neon-blue-glow);
+        }
+
+        .btn-primary:hover {
+            background: #fff;
+            box-shadow: 0 0 40px var(--neon-blue-glow), 0 0 80px rgba(0, 212, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--neon-blue);
+            border: 1px solid var(--border-glow);
+        }
+
+        .btn-outline:hover {
+            background: var(--neon-blue-dim);
+            border-color: var(--neon-blue);
+            box-shadow: 0 0 20px var(--neon-blue-glow);
+            transform: translateY(-2px);
+        }
+
+        /* ══════════════════════════════════════════
+           SECTION BASE
+        ══════════════════════════════════════════ */
+        .section {
+            position: relative;
+            padding: 100px 0;
+            z-index: 1;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .section-title {
+            font-family: var(--font-display);
+            font-size: clamp(1.6rem, 4vw, 2.2rem);
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+        }
+
+        .section-title .title-decorator {
+            color: var(--neon-blue);
+            margin-right: 12px;
+            font-family: var(--font-mono);
+            font-size: 0.7em;
+            opacity: 0.7;
+        }
+
+        .section-subtitle {
+            color: var(--text-muted);
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            margin-bottom: 60px;
+        }
+
+        /* ══════════════════════════════════════════
+           GLASSMORPHISM CARD
+        ══════════════════════════════════════════ */
+        .glass-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-glow);
+            border-radius: 12px;
+            backdrop-filter: blur(20px);
+            transition: var(--transition);
+        }
+
+        .glass-card:hover {
+            border-color: rgba(0, 212, 255, 0.4);
+            box-shadow: var(--shadow-glow);
+        }
+
+        /* ══════════════════════════════════════════
+           ABOUT SECTION
+        ══════════════════════════════════════════ */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .about-image {
+            position: relative;
+            display: flex;
+            justify-content: center;
+        }
+
+        .image-frame {
+            position: relative;
+            width: 260px;
+            height: 260px;
+        }
+
+        .avatar-placeholder {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--bg-secondary), var(--bg-card));
+            border: 2px solid var(--border-glow);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5rem;
+            color: var(--neon-blue);
+            box-shadow: 0 0 60px var(--neon-blue-glow), inset 0 0 40px rgba(0, 212, 255, 0.05);
+            animation: orbit-glow 4s ease infinite;
+        }
+
+        .avatar-ring {
+            position: absolute;
+            inset: -10px;
+            border-radius: 50%;
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            animation: spin-slow 8s linear infinite;
+        }
+
+        .avatar-ring::before {
+            content: '';
+            position: absolute;
+            top: -3px;
+            left: 50%;
+            width: 6px;
+            height: 6px;
+            background: var(--neon-blue);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--neon-blue);
+            transform: translateX(-50%);
+        }
+
+        .avatar-ring-2 {
+            inset: -24px;
+            animation-duration: 12s;
+            animation-direction: reverse;
+            border-color: rgba(124, 58, 237, 0.15);
+        }
+
+        .avatar-ring-2::before {
+            background: var(--accent-purple);
+            box-shadow: 0 0 10px var(--accent-purple);
+        }
+
+        .about-heading {
+            font-family: var(--font-display);
+            font-size: 1.4rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            color: var(--neon-blue);
+            margin-bottom: 20px;
+        }
+
+        .about-description {
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+            font-size: 0.95rem;
+            line-height: 1.8;
+        }
+
+        .about-description strong {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .about-stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            margin-top: 32px;
+        }
+
+        .stat-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-glow);
+            border-radius: 8px;
+            padding: 16px 12px;
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .stat-card:hover {
+            border-color: var(--neon-blue);
+            box-shadow: 0 0 20px var(--neon-blue-glow);
+            transform: translateY(-3px);
+        }
+
+        .stat-number {
+            display: block;
+            font-family: var(--font-display);
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--neon-blue);
+            margin-bottom: 4px;
+        }
+
+        .stat-label {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-family: var(--font-mono);
+        }
+
+        /* ══════════════════════════════════════════
+           SKILLS SECTION
+        ══════════════════════════════════════════ */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .skill-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-glow);
+            border-radius: 18px;
+            padding: 32px 28px;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: default;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(20px);
+        }
+
+        .skill-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 18px;
+            padding: 1px;
+            background: linear-gradient(135deg, transparent 40%, rgba(0, 212, 255, 0.15) 100%);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .skill-card:hover {
+            border-color: rgba(0, 212, 255, 0.5);
+            box-shadow:
+                0 0 25px rgba(0, 212, 255, 0.15),
+                0 0 50px rgba(0, 212, 255, 0.05),
+                inset 0 0 30px rgba(0, 212, 255, 0.03);
+            transform: scale(1.03);
+        }
+
+        .skill-card:hover::before {
+            opacity: 1;
+        }
+
+        .skill-icon {
+            font-size: 2.4rem;
+            color: var(--neon-blue);
+            margin-bottom: 16px;
+            filter: drop-shadow(0 0 12px var(--neon-blue-glow));
+        }
+
+        .skill-name {
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+        }
+
+        .skill-bar {
+            height: 6px;
+            background: rgba(255, 255, 255, 0.06);
+            border-radius: 50px;
+            overflow: hidden;
+            margin-bottom: 10px;
+        }
+
+        .skill-progress {
+            height: 100%;
+            background: linear-gradient(90deg, var(--neon-blue), var(--accent-cyan), var(--accent-purple));
+            border-radius: 50px;
+            width: 0;
+            transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 0 8px var(--neon-blue), 0 0 16px rgba(0, 212, 255, 0.2);
+        }
+
+        .skill-percent {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .skill-subtitle {
+            font-family: var(--font-body);
+            font-size: 0.72rem;
+            color: var(--text-muted);
+            opacity: 0.65;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        /* ══════════════════════════════════════════
+           GLOBE SECTION
+        ══════════════════════════════════════════ */
+        .globe-section {
+            padding: 100px 0;
+            overflow: hidden;
+        }
+
+        .globe-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .globe-info {
+            position: relative;
+        }
+
+        .globe-info-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            color: var(--neon-blue);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            padding: 6px 14px;
+            background: var(--neon-blue-dim);
+            border: 1px solid var(--border-glow);
+            border-radius: 4px;
+        }
+
+        .globe-info-title {
+            font-family: var(--font-display);
+            font-size: 2.4rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            line-height: 1.1;
+            margin-bottom: 20px;
+        }
+
+        .globe-info-title span {
+            color: var(--neon-blue);
+            display: block;
+        }
+
+        .globe-info-desc {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.8;
+            margin-bottom: 32px;
+        }
+
+        .globe-info-stats {
+            display: flex;
+            gap: 24px;
+        }
+
+        .globe-stat {
+            background: var(--bg-card);
+            border: 1px solid var(--border-glow);
+            border-radius: 8px;
+            padding: 16px 20px;
+        }
+
+        .globe-stat-value {
+            font-family: var(--font-display);
+            font-size: 1.1rem;
+            color: var(--neon-blue);
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .globe-stat-label {
+            font-family: var(--font-mono);
+            font-size: 0.65rem;
+            color: var(--text-muted);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        #globe-container {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 1;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        #globe-canvas {
+            width: 100% !important;
+            height: 100% !important;
+            border-radius: 50%;
+        }
+
+        .globe-loading {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            color: var(--text-muted);
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+        }
+
+        .globe-spinner {
+            width: 40px;
+            height: 40px;
+            border: 2px solid var(--border-glow);
+            border-top-color: var(--neon-blue);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        .globe-tooltip {
+            position: absolute;
+            background: rgba(3, 7, 18, 0.9);
+            border: 1px solid var(--neon-blue);
+            border-radius: 6px;
+            padding: 8px 14px;
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            color: var(--neon-blue);
+            pointer-events: none;
+            white-space: nowrap;
+            display: none;
+            box-shadow: 0 0 15px var(--neon-blue-glow);
+            z-index: 10;
+        }
+
+        /* ══════════════════════════════════════════
+           SOCIAL SECTION
+        ══════════════════════════════════════════ */
+        .social-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .social-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            padding: 32px 20px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-glow);
+            border-radius: 12px;
+            text-decoration: none;
+            color: var(--text-primary);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .social-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, transparent, rgba(0, 212, 255, 0.05));
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .social-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3), 0 0 30px var(--neon-blue-glow);
+            border-color: var(--neon-blue);
+        }
+
+        .social-card:hover::before {
+            opacity: 1;
+        }
+
+        .social-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            background: var(--neon-blue-dim);
+            border: 1px solid var(--border-glow);
+            transition: var(--transition);
+        }
+
+        .social-card:hover .social-icon {
+            background: var(--neon-blue);
+            color: var(--bg-primary);
+            box-shadow: 0 0 30px var(--neon-blue-glow);
+            transform: rotateY(360deg);
+            transition: all 0.6s ease;
+        }
+
+        .social-card.instagram .social-icon {
+            color: #e1306c;
+            border-color: rgba(225, 48, 108, 0.3);
+        }
+
+        .social-card.facebook .social-icon {
+            color: #1877f2;
+            border-color: rgba(24, 119, 242, 0.3);
+        }
+
+        .social-card.whatsapp .social-icon {
+            color: #25d366;
+            border-color: rgba(37, 211, 102, 0.3);
+        }
+
+        .social-card.telegram .social-icon {
+            color: #29aae1;
+            border-color: rgba(41, 170, 225, 0.3);
+        }
+
+        .social-card:hover .social-icon {
+            color: var(--bg-primary);
+        }
+
+        .social-name {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .social-handle {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        /* ══════════════════════════════════════════
+           CONTACT SECTION
+        ══════════════════════════════════════════ */
+        .contact-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 48px;
+            align-items: start;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .contact-info-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-glow);
+            border-radius: 12px;
+            padding: 20px 24px;
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            transition: var(--transition);
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .contact-info-card:hover {
+            border-color: var(--neon-blue);
+            box-shadow: 0 0 25px var(--neon-blue-glow);
+            transform: translateX(4px);
+        }
+
+        .info-icon {
+            width: 42px;
+            height: 42px;
+            flex-shrink: 0;
+            border-radius: 8px;
+            background: var(--neon-blue-dim);
+            border: 1px solid var(--border-glow);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--neon-blue);
+            font-size: 1rem;
+        }
+
+        .contact-info-card h4 {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 4px;
+        }
+
+        .contact-info-card p {
+            font-size: 0.85rem;
+            color: var(--text-primary);
+        }
+
+        .location-cta {
+            display: block;
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            color: var(--neon-blue);
+            margin-top: 4px;
+        }
+
+        .availability-card {
+            cursor: default;
+        }
+
+        .availability-card:hover {
+            transform: none;
+        }
+
+        .availability-text {
+            font-size: 0.8rem !important;
+            color: var(--text-secondary) !important;
+            line-height: 1.7;
+        }
+
+        /* Contact Form */
+        .contact-form {
+            background: var(--bg-card);
+            border: 1px solid var(--border-glow);
+            border-radius: 12px;
+            padding: 40px;
+            backdrop-filter: blur(20px);
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        .form-group label {
+            display: block;
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+
+        .input-wrapper {
+            position: relative;
+        }
+
+        .input-wrapper i {
+            position: absolute;
+            left: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            pointer-events: none;
+            transition: var(--transition);
+        }
+
+        .input-wrapper.textarea-wrapper i {
+            top: 16px;
+            transform: none;
+        }
+
+        .input-wrapper input,
+        .input-wrapper textarea {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-glow);
+            border-radius: 6px;
+            padding: 12px 14px 12px 40px;
+            color: var(--text-primary);
+            font-family: var(--font-body);
+            font-size: 0.9rem;
+            transition: var(--transition);
+            outline: none;
+            resize: none;
+        }
+
+        .input-wrapper input:focus,
+        .input-wrapper textarea:focus {
+            border-color: var(--neon-blue);
+            box-shadow: 0 0 0 3px var(--neon-blue-dim);
+        }
+
+        .input-wrapper input:focus~i,
+        .input-wrapper textarea:focus~i {
+            color: var(--neon-blue);
+        }
+
+        .input-wrapper input::placeholder,
+        .input-wrapper textarea::placeholder {
+            color: var(--text-muted);
+        }
+
+        .form-error {
+            display: block;
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            color: #f87171;
+            margin-top: 6px;
+            min-height: 16px;
+        }
+
+        .btn-submit {
+            width: 100%;
+            justify-content: center;
+            padding: 14px;
+            font-size: 0.85rem;
+        }
+
+        .form-status {
+            margin-top: 16px;
+            padding: 12px 16px;
+            border-radius: 6px;
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            display: none;
+        }
+
+        .form-status.success {
+            display: block;
+            background: rgba(0, 255, 150, 0.05);
+            border: 1px solid rgba(0, 255, 150, 0.3);
+            color: #4ade80;
+        }
+
+        .form-status.error {
+            display: block;
+            background: rgba(248, 113, 113, 0.05);
+            border: 1px solid rgba(248, 113, 113, 0.3);
+            color: #f87171;
+        }
+
+        /* Toast */
+        .toast-container {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .toast {
+            background: var(--bg-secondary);
+            border-radius: 8px;
+            padding: 14px 18px;
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            min-width: 280px;
+            animation: toast-in 0.3s ease forwards;
+            border-left: 3px solid var(--neon-blue);
+        }
+
+        .toast.success {
+            border-left-color: #4ade80;
+        }
+
+        .toast.error {
+            border-left-color: #f87171;
+        }
+
+        .toast i {
+            font-size: 1rem;
+        }
+
+        .toast.success i {
+            color: #4ade80;
+        }
+
+        .toast.error i {
+            color: #f87171;
+        }
+
+        /* ══════════════════════════════════════════
+           FOOTER
+        ══════════════════════════════════════════ */
+        .footer {
+            position: relative;
+            z-index: 1;
+            border-top: 1px solid var(--border-glow);
+            padding: 40px 0;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 24px;
+        }
+
+        .footer-logo {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--neon-blue);
+            letter-spacing: 4px;
+            text-shadow: 0 0 20px var(--neon-blue-glow);
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 16px;
+        }
+
+        .footer-social a {
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-glow);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: var(--transition);
+        }
+
+        .footer-social a:hover {
+            color: var(--neon-blue);
+            border-color: var(--neon-blue);
+            box-shadow: 0 0 15px var(--neon-blue-glow);
+            transform: translateY(-3px);
+        }
+
+        .footer-copy {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            letter-spacing: 1px;
+        }
+
+        /* ══════════════════════════════════════════
+           BACK TO TOP
+        ══════════════════════════════════════════ */
+        .back-to-top {
+            position: fixed;
+            bottom: 24px;
+            left: 24px;
+            width: 44px;
+            height: 44px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-glow);
+            border-radius: 8px;
+            color: var(--neon-blue);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 100;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: var(--transition);
+            pointer-events: none;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
+        }
+
+        .back-to-top:hover {
+            background: var(--neon-blue);
+            color: var(--bg-primary);
+            box-shadow: 0 0 20px var(--neon-blue-glow);
+        }
+
+        /* ══════════════════════════════════════════
+           SCROLL ANIMATIONS
+        ══════════════════════════════════════════ */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ══════════════════════════════════════════
+           KEYFRAME ANIMATIONS
+        ══════════════════════════════════════════ */
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+        }
+
+        @keyframes fadeInDown {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+        }
+
+        @keyframes blink {
+            50% {
+                opacity: 0;
+            }
+        }
+
+        @keyframes scroll-wheel {
+            0% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(12px);
+                opacity: 0;
+            }
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes spin-slow {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes orbit-glow {
+
+            0%,
+            100% {
+                box-shadow: 0 0 60px var(--neon-blue-glow), inset 0 0 40px rgba(0, 212, 255, 0.05);
+            }
+
+            50% {
+                box-shadow: 0 0 100px rgba(0, 212, 255, 0.3), inset 0 0 60px rgba(0, 212, 255, 0.1);
+            }
+        }
+
+        @keyframes pulse-dot {
+
+            0%,
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+            50% {
+                opacity: 0.5;
+                transform: scale(0.8);
+            }
+        }
+
+        @keyframes toast-in {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes pulse-ring {
+            0% {
+                transform: translate(-50%, -50%) scale(0.8);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translate(-50%, -50%) scale(3);
+                opacity: 0;
+            }
+        }
+
+        /* ══════════════════════════════════════════
+           RESPONSIVE
+        ══════════════════════════════════════════ */
+        @media (max-width: 900px) {
+
+            .about-grid,
+            .globe-wrapper,
+            .contact-wrapper {
+                grid-template-columns: 1fr;
+            }
+
+            .globe-wrapper {
+                gap: 40px;
+            }
+
+            #globe-container {
+                max-width: 340px;
+                order: -1;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                bottom: 0;
+                width: 260px;
+                background: rgba(3, 7, 18, 0.97);
+                backdrop-filter: blur(20px);
+                border-left: 1px solid var(--border-glow);
+                flex-direction: column;
+                justify-content: center;
+                align-items: flex-start;
+                padding: 60px 32px;
+                transition: right 0.3s ease;
+                gap: 4px;
+            }
+
+            .nav-links.open {
+                right: 0;
+            }
+
+            .nav-toggle {
+                display: block;
+                z-index: 1001;
+            }
+
+            .about-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .globe-info-stats {
+                flex-wrap: wrap;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .section {
+                padding: 70px 0;
+            }
+
+            .hero-cta {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .social-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .contact-form {
+                padding: 24px 20px;
+            }
+
+            .about-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Starfield Canvas -->
+    <canvas id="particles-canvas"></canvas>
+
+    <!-- ════════════════════════════
+       NAVBAR
+    ════════════════════════════ -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#hero" class="nav-logo">&lt;TS /&gt;</a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#hero" class="nav-link active">Home</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#skills" class="nav-link">Skills</a></li>
+                <li><a href="#globe" class="nav-link">Location</a></li>
+                <li><a href="#social" class="nav-link">Social</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+                <span class="hamburger"></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- ════════════════════════════
+       HERO
+    ════════════════════════════ -->
+    <section class="hero" id="hero">
+        <div class="hero-grid-lines"></div>
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span class="dot"></span>
+                Available for collaboration
+            </div>
+            <p class="hero-greeting">Hello, I'm</p>
+            <h1 class="hero-name">Tushar Shaikh</h1>
+            <p class="hero-tagline">
+                <span id="typedTagline"></span><span class="cursor-blink">|</span>
+            </p>
+            <p class="hero-description">
+                A passionate student &amp; developer crafting digital experiences from India.
+            </p>
+            <div class="hero-cta">
+                <a href="#contact" class="btn btn-primary">
+                    <i class="fas fa-paper-plane"></i> Contact Me
+                </a>
+                <a href="#about" class="btn btn-outline">
+                    <i class="fas fa-user"></i> About Me
+                </a>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <div class="mouse">
+                <div class="wheel"></div>
+            </div>
+            <p>Scroll</p>
+        </div>
+    </section>
+
+    <!-- ════════════════════════════
+       ABOUT
+    ════════════════════════════ -->
+    <section class="section about" id="about">
+        <div class="container">
+            <h2 class="section-title animate-on-scroll">
+                <span class="title-decorator">//</span> About Me
+            </h2>
+            <div class="about-grid">
+                <div class="about-image animate-on-scroll">
+                    <div class="image-frame">
+                        <div class="avatar-placeholder">
+                            <i class="fas fa-user-astronaut"></i>
+                        </div>
+                        <div class="avatar-ring"></div>
+                        <div class="avatar-ring avatar-ring-2"></div>
+                    </div>
+                </div>
+                <div class="about-text animate-on-scroll">
+                    <h3 class="about-heading">Student &amp; Developer</h3>
+                    <p class="about-description">
+                        I am a <strong>19-year-old</strong> passionate student and a small developer from
+                        <strong>India</strong>. I love building things with code and constantly exploring new
+                        technologies. My interests span across <strong>web development</strong>,
+                        <strong>automation</strong>, and <strong>software engineering</strong>.
+                    </p>
+                    <p class="about-description">
+                        Every line of code I write is a step towards creating something meaningful.
+                        I believe in learning by building and I'm always looking for new challenges
+                        to sharpen my skills.
+                    </p>
+                    <div class="about-stats">
+                        <div class="stat-card">
+                            <span class="stat-number">19</span>
+                            <span class="stat-label">Years Old</span>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-number"><i class="fas fa-graduation-cap"></i></span>
+                            <span class="stat-label">Student</span>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-number"><i class="fas fa-code"></i></span>
+                            <span class="stat-label">Developer</span>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-number"><i class="fas fa-map-marker-alt"></i></span>
+                            <span class="stat-label">India</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ════════════════════════════
+       SKILLS
+    ════════════════════════════ -->
+    <section class="section skills" id="skills">
+        <div class="container">
+            <h2 class="section-title animate-on-scroll">
+                <span class="title-decorator">//</span> My Skills
+            </h2>
+            <p class="section-subtitle animate-on-scroll">Technologies I work with</p>
+            <div class="skills-grid">
+                <div class="skill-card animate-on-scroll">
+                    <div class="skill-icon"><i class="fab fa-telegram-plane"></i></div>
+                    <h4 class="skill-name">Telegram Bots</h4>
+                    <div class="skill-bar">
+                        <div class="skill-progress" data-width="90"></div>
+                    </div>
+                    <span class="skill-percent">90%</span>
+                    <span class="skill-subtitle">Aiogram / Telethon</span>
+                </div>
+                <div class="skill-card animate-on-scroll">
+                    <div class="skill-icon"><i class="fab fa-linux"></i></div>
+                    <h4 class="skill-name">VPS / Linux</h4>
+                    <div class="skill-bar">
+                        <div class="skill-progress" data-width="85"></div>
+                    </div>
+                    <span class="skill-percent">85%</span>
+                    <span class="skill-subtitle">Nginx / PM2</span>
+                </div>
+                <div class="skill-card animate-on-scroll">
+                    <div class="skill-icon"><i class="fab fa-js-square"></i></div>
+                    <h4 class="skill-name">JavaScript</h4>
+                    <div class="skill-bar">
+                        <div class="skill-progress" data-width="80"></div>
+                    </div>
+                    <span class="skill-percent">80%</span>
+                    <span class="skill-subtitle">Frontend / Logic</span>
+                </div>
+                <div class="skill-card animate-on-scroll">
+                    <div class="skill-icon"><i class="fab fa-python"></i></div>
+                    <h4 class="skill-name">Python</h4>
+                    <div class="skill-bar">
+                        <div class="skill-progress" data-width="75"></div>
+                    </div>
+                    <span class="skill-percent">75%</span>
+                    <span class="skill-subtitle">Core / Backend</span>
+                </div>
+                <div class="skill-card animate-on-scroll">
+                    <div class="skill-icon"><i class="fas fa-database"></i></div>
+                    <h4 class="skill-name">Database</h4>
+                    <div class="skill-bar">
+                        <div class="skill-progress" data-width="70"></div>
+                    </div>
+                    <span class="skill-percent">70%</span>
+                    <span class="skill-subtitle">MySQL / SQLite</span>
+                </div>
+                <div class="skill-card animate-on-scroll">
+                    <div class="skill-icon"><i class="fas fa-code"></i></div>
+                    <h4 class="skill-name">Web Dev</h4>
+                    <div class="skill-bar">
+                        <div class="skill-progress" data-width="70"></div>
+                    </div>
+                    <span class="skill-percent">70%</span>
+                    <span class="skill-subtitle">HTML / CSS</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ════════════════════════════
+       GLOBE / LOCATION
+    ════════════════════════════ -->
+    <section class="section globe-section" id="globe">
+        <div class="container">
+            <div class="globe-wrapper">
+                <div class="globe-info">
+                    <div class="globe-info-badge animate-on-scroll">
+                        <i class="fas fa-satellite"></i>
+                        Interactive 3D Globe
+                    </div>
+                    <h2 class="globe-info-title animate-on-scroll">
+                        Based In
+                        <span>West Bengal, India</span>
+                    </h2>
+                    <p class="globe-info-desc animate-on-scroll">
+                        Located in Nadia district, West Bengal, India — building digital experiences
+                        from the heart of the subcontinent. The globe shows my exact location
+                        highlighted with a pulsing neon marker.
+                    </p>
+                    <div class="globe-info-stats animate-on-scroll">
+                        <div class="globe-stat">
+                            <span class="globe-stat-value">23.4°N</span>
+                            <span class="globe-stat-label">Latitude</span>
+                        </div>
+                        <div class="globe-stat">
+                            <span class="globe-stat-value">88.4°E</span>
+                            <span class="globe-stat-label">Longitude</span>
+                        </div>
+                        <div class="globe-stat">
+                            <span class="globe-stat-value">IST +5:30</span>
+                            <span class="globe-stat-label">Timezone</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="globe-container">
+                    <div class="globe-loading" id="globeLoading">
+                        <div class="globe-spinner"></div>
+                        <span>Loading Globe...</span>
+                    </div>
+                    <canvas id="globe-canvas"></canvas>
+                    <div class="globe-tooltip" id="globeTooltip">
+                        📍 Tushar Shaikh — West Bengal, India
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ════════════════════════════
+       SOCIAL
+    ════════════════════════════ -->
+    <section class="section social" id="social">
+        <div class="container">
+            <h2 class="section-title animate-on-scroll">
+                <span class="title-decorator">//</span> Connect With Me
+            </h2>
+            <p class="section-subtitle animate-on-scroll">Find me on social media</p>
+            <div class="social-grid" id="socialLinksContainer">
+                <a href="https://www.instagram.com/tushar_sk112?igsh=MTJsZzFkYjc3MTU2YQ==" target="_blank"
+                    rel="noopener noreferrer" class="social-card instagram animate-on-scroll">
+                    <div class="social-icon"><i class="fab fa-instagram"></i></div>
+                    <span class="social-name">Instagram</span>
+                </a>
+                <a href="https://www.facebook.com/alimuddin.shaikh.37819" target="_blank" rel="noopener noreferrer"
+                    class="social-card facebook animate-on-scroll">
+                    <div class="social-icon"><i class="fab fa-facebook-f"></i></div>
+                    <span class="social-name">Facebook</span>
+                </a>
+                <a href="https://wa.me/919800996117?text=Hello%20Tushar" target="_blank" rel="noopener noreferrer"
+                    class="social-card whatsapp animate-on-scroll">
+                    <div class="social-icon"><i class="fab fa-whatsapp"></i></div>
+                    <span class="social-name">WhatsApp</span>
+                </a>
+                <a href="https://t.me/tonxfire" target="_blank" rel="noopener noreferrer"
+                    class="social-card telegram animate-on-scroll">
+                    <div class="social-icon"><i class="fab fa-telegram-plane"></i></div>
+                    <span class="social-name">Telegram</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ════════════════════════════
+       CONTACT
+    ════════════════════════════ -->
+    <section class="section contact" id="contact">
+        <div class="container">
+            <h2 class="section-title animate-on-scroll">
+                <span class="title-decorator">//</span> Get In Touch
+            </h2>
+            <p class="section-subtitle animate-on-scroll">Have a question or want to work together?</p>
+            <div class="contact-wrapper">
+                <div class="contact-info">
+                    <a href="mailto:tusharshaikh2007@gmail.com" class="contact-info-card animate-on-scroll">
+                        <div class="info-icon"><i class="fas fa-envelope"></i></div>
+                        <div>
+                            <h4>Email</h4>
+                            <p>tusharshaikh2007@gmail.com</p>
+                        </div>
+                    </a>
+                    <a href="https://www.google.com/maps/search/?api=1&query=Nadia%2C+West+Bengal%2C+India+741160"
+                        target="_blank" rel="noopener noreferrer" class="contact-info-card animate-on-scroll">
+                        <div class="info-icon"><i class="fas fa-map-marker-alt"></i></div>
+                        <div>
+                            <h4>Location</h4>
+                            <p>India</p>
+                            <span class="location-cta"><i class="fas fa-external-link-alt"></i> Click to view live
+                                location</span>
+                        </div>
+                    </a>
+                    <div class="contact-info-card availability-card animate-on-scroll">
+                        <div class="info-icon"><i class="fas fa-clock"></i></div>
+                        <div>
+                            <h4>Availability</h4>
+                            <p class="availability-text">
+                                Currently open to collaboration, freelance projects, and innovative
+                                development opportunities. Feel free to reach out.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <form class="contact-form animate-on-scroll" id="contactForm" novalidate>
+                    <div class="form-group">
+                        <label for="contactName">Your Name</label>
+                        <div class="input-wrapper">
+                            <i class="fas fa-user"></i>
+                            <input type="text" id="contactName" name="name" placeholder="John Doe" required />
+                        </div>
+                        <span class="form-error" id="nameError"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="contactEmail">Your Email</label>
+                        <div class="input-wrapper">
+                            <i class="fas fa-envelope"></i>
+                            <input type="email" id="contactEmail" name="email" placeholder="john@example.com"
+                                required />
+                        </div>
+                        <span class="form-error" id="emailError"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="contactMessage">Your Message</label>
+                        <div class="input-wrapper textarea-wrapper">
+                            <i class="fas fa-comment-dots"></i>
+                            <textarea id="contactMessage" name="message" rows="5"
+                                placeholder="Write your message here..." required></textarea>
+                        </div>
+                        <span class="form-error" id="messageError"></span>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-submit" id="submitBtn">
+                        <span class="btn-text"><i class="fas fa-paper-plane"></i> Send Message</span>
+                        <span class="btn-loading" style="display:none;"><i class="fas fa-spinner fa-spin"></i>
+                            Sending...</span>
+                    </button>
+                    <div class="form-status" id="formStatus"></div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- ════════════════════════════
+       FOOTER
+    ════════════════════════════ -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">&lt;TS /&gt;</div>
+                <div class="footer-social">
+                    <a href="https://www.instagram.com/tushar_sk112?igsh=MTJsZzFkYjc3MTU2YQ==" target="_blank"
+                        rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.facebook.com/alimuddin.shaikh.37819" target="_blank" rel="noopener noreferrer"
+                        aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://wa.me/919800996117?text=Hello%20Tushar" target="_blank" rel="noopener noreferrer"
+                        aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    <a href="https://t.me/tonxfire" target="_blank" rel="noopener noreferrer" aria-label="Telegram"><i
+                            class="fab fa-telegram-plane"></i></a>
+                </div>
+                <div class="footer-copy">
+                    <p>&copy; <span id="currentYear"></span> Tushar Shaikh. All Rights Reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <button class="back-to-top" id="backToTop" aria-label="Back to top">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- Three.js CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+    <script>
+        /* ═══════════════════════════════════════════════════════
+           CONFIGURATION
+        ═══════════════════════════════════════════════════════ */
+        const API_BASE_URL = 'http://localhost:5000/api';
+
+        /* ═══════════════════════════════════════════════════════
+           INIT
+        ═══════════════════════════════════════════════════════ */
+        document.addEventListener('DOMContentLoaded', () => {
+            initParticles();
+            initNavbar();
+            initMobileNav();
+            initTypingEffect();
+            initScrollAnimations();
+            initContactForm();
+            initBackToTop();
+            initGlobe();
+            document.getElementById('currentYear').textContent = new Date().getFullYear();
+        });
+
+        /* ═══════════════════════════════════════════════════════
+           1. PARTICLES BACKGROUND
+        ═══════════════════════════════════════════════════════ */
+        function initParticles() {
+            const canvas = document.getElementById('particles-canvas');
+            const ctx = canvas.getContext('2d');
+            let particles = [];
+            let W, H;
+
+            function resize() {
+                W = canvas.width = window.innerWidth;
+                H = canvas.height = window.innerHeight;
+            }
+
+            resize();
+            window.addEventListener('resize', resize);
+
+            for (let i = 0; i < 120; i++) {
+                particles.push({
+                    x: Math.random() * W,
+                    y: Math.random() * H,
+                    r: Math.random() * 1.2 + 0.2,
+                    vx: (Math.random() - 0.5) * 0.2,
+                    vy: (Math.random() - 0.5) * 0.2,
+                    alpha: Math.random() * 0.6 + 0.1,
+                });
+            }
+
+            function draw() {
+                ctx.clearRect(0, 0, W, H);
+                particles.forEach(p => {
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+                    ctx.fillStyle = `rgba(0, 212, 255, ${p.alpha})`;
+                    ctx.fill();
+                    p.x += p.vx;
+                    p.y += p.vy;
+                    if (p.x < 0 || p.x > W) p.vx *= -1;
+                    if (p.y < 0 || p.y > H) p.vy *= -1;
+                });
+                requestAnimationFrame(draw);
+            }
+
+            draw();
+        }
+
+        /* ═══════════════════════════════════════════════════════
+           2. NAVBAR
+        ═══════════════════════════════════════════════════════ */
+        function initNavbar() {
+            const navbar = document.getElementById('navbar');
+            const navLinks = document.querySelectorAll('.nav-link');
+            const sections = document.querySelectorAll('section[id]');
+
+            window.addEventListener('scroll', () => {
+                navbar.classList.toggle('scrolled', window.scrollY > 60);
+                let current = '';
+                sections.forEach(sec => {
+                    if (window.scrollY >= sec.offsetTop - 140) current = sec.id;
+                });
+                navLinks.forEach(link => {
+                    link.classList.toggle('active', link.getAttribute('href') === `#${current}`);
+                });
+            });
+        }
+
+        /* ═══════════════════════════════════════════════════════
+           3. MOBILE NAV
+        ═══════════════════════════════════════════════════════ */
+        function initMobileNav() {
+            const toggle = document.getElementById('navToggle');
+            const links = document.getElementById('navLinks');
+
+            toggle.addEventListener('click', () => {
+                toggle.classList.toggle('open');
+                links.classList.toggle('open');
+            });
+
+            links.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', () => {
+                    toggle.classList.remove('open');
+                    links.classList.remove('open');
+                });
+            });
+        }
+
+        /* ═══════════════════════════════════════════════════════
+           4. TYPING EFFECT
+        ═══════════════════════════════════════════════════════ */
+        function initTypingEffect() {
+            const el = document.getElementById('typedTagline');
+            const phrases = [
+                'Student & Developer',
+                'Tech Enthusiast',
+                'Web Developer',
+                'Code Craftsman',
+                'Python Developer',
+            ];
+            let phraseIdx = 0, charIdx = 0, deleting = false;
+
+            function type() {
+                const phrase = phrases[phraseIdx];
+                if (!deleting) {
+                    el.textContent = phrase.slice(0, ++charIdx);
+                    if (charIdx === phrase.length) {
+                        deleting = true;
+                        return setTimeout(type, 2000);
+                    }
+                } else {
+                    el.textContent = phrase.slice(0, --charIdx);
+                    if (charIdx === 0) {
+                        deleting = false;
+                        phraseIdx = (phraseIdx + 1) % phrases.length;
+                    }
+                }
+                setTimeout(type, deleting ? 50 : 80);
+            }
+
+            setTimeout(type, 800);
+        }
+
+        /* ═══════════════════════════════════════════════════════
+           5. SCROLL ANIMATIONS
+        ═══════════════════════════════════════════════════════ */
+        function initScrollAnimations() {
+            const els = document.querySelectorAll('.animate-on-scroll');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry, i) => {
+                    if (entry.isIntersecting) {
+                        setTimeout(() => {
+                            entry.target.classList.add('visible');
+                            // Animate skill bars
+                            const bar = entry.target.querySelector('.skill-progress');
+                            if (bar) bar.style.width = bar.dataset.width + '%';
+                            // Animate ALL skill bars in visible skill cards
+                            entry.target.querySelectorAll('.skill-progress').forEach(b => {
+                                b.style.width = b.dataset.width + '%';
+                            });
+                        }, i * 80);
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.15 });
+
+            els.forEach(el => observer.observe(el));
+        }
+
+        /* ═══════════════════════════════════════════════════════
+           6. CONTACT FORM
+        ═══════════════════════════════════════════════════════ */
+        function initContactForm() {
+            const form = document.getElementById('contactForm');
+            if (!form) return;
+
+            form.addEventListener('submit', async (e) => {
+                e.preventDefault();
+
+                const name = document.getElementById('contactName').value.trim();
+                const email = document.getElementById('contactEmail').value.trim();
+                const message = document.getElementById('contactMessage').value.trim();
+                const nameErr = document.getElementById('nameError');
+                const emailErr = document.getElementById('emailError');
+                const msgErr = document.getElementById('messageError');
+                const status = document.getElementById('formStatus');
+                const btn = document.getElementById('submitBtn');
+                const btnText = btn.querySelector('.btn-text');
+                const btnLoading = btn.querySelector('.btn-loading');
+
+                // Clear errors
+                nameErr.textContent = emailErr.textContent = msgErr.textContent = '';
+                status.className = 'form-status';
+                status.style.display = 'none';
+
+                // Validate
+                let valid = true;
+                if (!name || name.length < 2) { nameErr.textContent = 'Name must be at least 2 characters.'; valid = false; }
+                if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { emailErr.textContent = 'Please enter a valid email.'; valid = false; }
+                if (!message || message.length < 10) { msgErr.textContent = 'Message must be at least 10 characters.'; valid = false; }
+                if (!valid) return;
+
+                // Loading state
+                btnText.style.display = 'none';
+                btnLoading.style.display = 'inline-flex';
+                btn.disabled = true;
+
+                try {
+                    const res = await fetch(`${API_BASE_URL}/contact`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ name, email, message }),
+                    });
+                    const data = await res.json();
+
+                    if (res.ok && data.success) {
+                        form.reset();
+                        status.className = 'form-status success';
+                        status.textContent = '✓ Message sent successfully! I\'ll get back to you soon.';
+                        showToast('Message sent successfully!', 'success');
+                    } else {
+                        throw new Error(data.errors?.[0] || 'Failed to send message.');
+                    }
+                } catch (err) {
+                    status.className = 'form-status error';
+                    status.textContent = err.message || 'Failed to send. Please try again.';
+                    showToast('Failed to send message.', 'error');
+                } finally {
+                    btnText.style.display = 'inline-flex';
+                    btnLoading.style.display = 'none';
+                    btn.disabled = false;
+                }
+            });
+        }
+
+        /* ═══════════════════════════════════════════════════════
+           7. TOAST
+        ═══════════════════════════════════════════════════════ */
+        function showToast(message, type = 'success') {
+            const container = document.getElementById('toastContainer');
+            const toast = document.createElement('div');
+            toast.className = `toast ${type}`;
+            toast.innerHTML = `<i class="fas fa-${type === 'success' ? 'check-circle' : 'exclamation-circle'}"></i> ${message}`;
+            container.appendChild(toast);
+            setTimeout(() => {
+                toast.style.opacity = '0';
+                toast.style.transform = 'translateX(100%)';
+                toast.style.transition = 'all 0.3s ease';
+                setTimeout(() => toast.remove(), 300);
+            }, 3500);
+        }
+
+        /* ═══════════════════════════════════════════════════════
+           8. BACK TO TOP
+        ═══════════════════════════════════════════════════════ */
+        function initBackToTop() {
+            const btn = document.getElementById('backToTop');
+            window.addEventListener('scroll', () => {
+                btn.classList.toggle('visible', window.scrollY > 400);
+            });
+            btn.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        }
+
+        /* ═══════════════════════════════════════════════════════
+           9. 3D GLOBE — ULTRA REALISTIC CINEMATIC NASA-LEVEL EARTH
+        ═══════════════════════════════════════════════════════ */
+        function initGlobe() {
+            const container = document.getElementById('globe-container');
+            const canvas = document.getElementById('globe-canvas');
+            const loading = document.getElementById('globeLoading');
+            const tooltip = document.getElementById('globeTooltip');
+
+            if (!window.THREE) {
+                loading.innerHTML = '<span style="color:#f87171">Three.js failed to load</span>';
+                return;
+            }
+
+            /* ── DEVICE DETECTION ─────────────────────────────────────────── */
+            const isMobile = /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent) || window.innerWidth < 768;
+            const PIXEL_RATIO = Math.min(window.devicePixelRatio, isMobile ? 1.5 : 2);
+            const SEGMENTS = isMobile ? 48 : 72;
+            const STAR_COUNT = isMobile ? 2000 : 5000;
+
+            /* ── CONSTANTS ────────────────────────────────────────────────── */
+            const MY_LAT = 23.47;
+            const MY_LON = 88.4;
+            const GLOBE_R = 2.5;
+            const TILT = 23.5 * Math.PI / 180;   // Earth axial tilt
+            const TEX_BASE = 'https://raw.githubusercontent.com/turban/webgl-earth/master/images/';
+
+            /* ── SCENE / CAMERA / RENDERER ───────────────────────────────── */
+            const scene = new THREE.Scene();
+            const W = container.clientWidth, H = container.clientHeight;
+            const camera = new THREE.PerspectiveCamera(45, W / H, 0.1, 2000);
+            camera.position.set(0, 0, 7.5);
+
+            const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: !isMobile });
+            renderer.setSize(W, H);
+            renderer.setPixelRatio(PIXEL_RATIO);
+            renderer.setClearColor(0x000000, 0);
+            renderer.physicallyCorrectLights = true;
+            renderer.outputEncoding = THREE.sRGBEncoding;
+            renderer.toneMapping = THREE.ACESFilmicToneMapping;
+            renderer.toneMappingExposure = 0.88;
+
+            /* ── LIGHTS ───────────────────────────────────────────────────── */
+            scene.add(new THREE.AmbientLight(0x080818, 0.35));
+
+            // Sun light — fixed at world +X; Earth rotates to create day/night
+            const sunLight = new THREE.DirectionalLight(0xfff4d6, 5.5);
+            sunLight.position.set(100, 0, 0);
+            scene.add(sunLight);
+
+            // Soft fill from dark side
+            const fillLight = new THREE.DirectionalLight(0x0a0a30, 0.3);
+            fillLight.position.set(-100, 0, 0);
+            scene.add(fillLight);
+
+            /* ── SHARED UNIFORM (sun direction always +X in world) ───────── */
+            const sunDirUniform = { value: new THREE.Vector3(1, 0, 0) };
+
+            /* ── TEXTURE LOADER ───────────────────────────────────────────── */
+            const txl = new THREE.TextureLoader();
+            txl.crossOrigin = 'anonymous';
+
+            /* ══════════════════════════════════════════════════════════════
+               STEP 8 — STARFIELD
+            ══════════════════════════════════════════════════════════════ */
+            (function buildStars() {
+                const pos = new Float32Array(STAR_COUNT * 3);
+                for (let i = 0; i < STAR_COUNT; i++) {
+                    const th = Math.random() * Math.PI * 2;
+                    const ph = Math.acos(2 * Math.random() - 1);
+                    const r = 600 + Math.random() * 200;
+                    pos[i * 3] = r * Math.sin(ph) * Math.cos(th);
+                    pos[i * 3 + 1] = r * Math.sin(ph) * Math.sin(th);
+                    pos[i * 3 + 2] = r * Math.cos(ph);
+                }
+                const geo = new THREE.BufferGeometry();
+                geo.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+                window._globeStarMat = new THREE.PointsMaterial({
+                    color: 0xffffff, size: isMobile ? 0.9 : 1.1,
+                    transparent: true, opacity: 0.9, sizeAttenuation: true,
+                });
+                scene.add(new THREE.Points(geo, window._globeStarMat));
+            })();
+
+            /* ══════════════════════════════════════════════════════════════
+               STEP 6 — SUN SPHERE (decorative, upper-right of scene)
+            ══════════════════════════════════════════════════════════════ */
+            const sunVisual = new THREE.Mesh(
+                new THREE.SphereGeometry(1.8, 24, 24),
+                new THREE.MeshBasicMaterial({ color: 0xfffbe8 })
+            );
+            sunVisual.position.set(9, 5.5, -18);
+            scene.add(sunVisual);
+
+            // Soft coronas
+            [3.6, 5.5, 8.0].forEach((r, i) => {
+                const halo = new THREE.Mesh(
+                    new THREE.SphereGeometry(r, 24, 24),
+                    new THREE.MeshBasicMaterial({
+                        color: i === 0 ? 0xffcc44 : i === 1 ? 0xff8800 : 0xff4400,
+                        transparent: true,
+                        opacity: i === 0 ? 0.18 : i === 1 ? 0.07 : 0.03,
+                        side: THREE.BackSide,
+                        depthWrite: false,
+                    })
+                );
+                sunVisual.add(halo);
+            });
+
+            /* ══════════════════════════════════════════════════════════════
+               STEP 7 — MOON
+            ══════════════════════════════════════════════════════════════ */
+            const moonMesh = new THREE.Mesh(
+                new THREE.SphereGeometry(0.28, 32, 32),
+                new THREE.MeshStandardMaterial({ color: 0x9a9a9a, roughness: 1.0, metalness: 0.0 })
+            );
+            scene.add(moonMesh);
+            txl.load(
+                'https://raw.githubusercontent.com/mrdoob/three.js/r128/examples/textures/planets/moon_1024.jpg',
+                tex => { moonMesh.material.map = tex; moonMesh.material.color.set(0xffffff); moonMesh.material.needsUpdate = true; },
+                undefined, () => { }
+            );
+
+            /* ══════════════════════════════════════════════════════════════
+               STEP 1 — EARTH PBR SHADER (day/night blend)
+            ══════════════════════════════════════════════════════════════ */
+            const earthVert = /* glsl */`
+            varying vec2  vUv;
+            varying vec3  vWN;   /* world normal   */
+            varying vec3  vWP;   /* world position */
+            void main() {
+                vUv = uv;
+                vWN = normalize((modelMatrix * vec4(normal, 0.0)).xyz);
+                vWP = (modelMatrix * vec4(position, 1.0)).xyz;
+                gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+            }
+        `;
+            const earthFrag = /* glsl */`
+            uniform sampler2D dayMap;
+            uniform sampler2D nightMap;
+            uniform sampler2D specMap;
+            uniform vec3      sunDir;
+            varying vec2 vUv;
+            varying vec3 vWN;
+            varying vec3 vWP;
+
+            void main() {
+                vec3 day    = pow(texture2D(dayMap,   vUv).rgb, vec3(2.2));
+                vec3 night  = pow(texture2D(nightMap, vUv).rgb, vec3(2.2));
+                float spec  = texture2D(specMap, vUv).r;
+
+                float NdS   = dot(normalize(vWN), normalize(sunDir));
+                float blend = smoothstep(-0.14, 0.26, NdS);
+                float diff  = max(0.0, NdS);
+
+                /* day side with diffuse shading */
+                vec3 lit    = day * (0.04 + diff * 1.2);
+
+                /* city lights — squared for realism */
+                vec3 cities = night * night * 3.5;
+
+                vec3 color  = mix(cities, lit, blend);
+
+                /* ocean specular glint */
+                vec3 vDir   = normalize(cameraPosition - vWP);
+                vec3 hVec   = normalize(normalize(sunDir) + vDir);
+                float sp    = pow(max(dot(normalize(vWN), hVec), 0.0), 100.0);
+                color      += spec * sp * vec3(1.0, 0.97, 0.86) * blend * 2.2;
+
+                /* subtle Fresnel blue tint at limb */
+                float fres  = pow(1.0 - clamp(dot(normalize(vWN), vDir), 0.0, 1.0), 4.2);
+                color      += fres * vec3(0.02, 0.18, 0.9) * 0.12;
+
+                gl_FragColor = vec4(color, 1.0);
+            }
+        `;
+
+            /* ══════════════════════════════════════════════════════════════
+               STEP 3 — ATMOSPHERE SCATTERING SHADER
+            ══════════════════════════════════════════════════════════════ */
+            const atmVert = /* glsl */`
+            varying vec3 vN;
+            varying vec3 vVD;
+            void main() {
+                vN  = normalize(normalMatrix * normal);
+                vVD = normalize(-(modelViewMatrix * vec4(position, 1.0)).xyz);
+                gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+            }
+        `;
+            const atmFrag = /* glsl */`
+            uniform vec3 sunDir;
+            varying vec3 vN;
+            varying vec3 vVD;
+            void main() {
+                float rim  = pow(1.0 - clamp(dot(vN, vVD), 0.0, 1.0), 3.2);
+                float sun  = clamp(dot(vN, normalize(sunDir)) * 0.5 + 0.5, 0.0, 1.0);
+                vec3  col  = mix(vec3(0.02, 0.12, 0.9), vec3(0.38, 0.62, 1.0), sun * 0.45);
+                gl_FragColor = vec4(col * rim, rim * 0.72);
+            }
+        `;
+
+            /* ══════════════════════════════════════════════════════════════
+               ASYNC TEXTURE LOADING → BUILD EARTH
+            ══════════════════════════════════════════════════════════════ */
+            let earthMesh = null, cloudMesh = null, earthMat = null;
+            let pinGroup = null, pinDotMat = null, pinRings = [];
+            let loaded = 0;
+            let tDay, tNight, tSpec, tBump, tClouds;
+            const NEED = 5;
+
+            function onLoad() { if (++loaded >= NEED) buildEarth(); }
+            function loadT(url, cb) { txl.load(url, t => { cb(t); onLoad(); }, undefined, () => { cb(null); onLoad(); }); }
+
+            loadT(TEX_BASE + '2_no_clouds_4k.jpg', t => tDay = t);
+            loadT(TEX_BASE + '8081_earthlights4k.jpg', t => tNight = t);
+            loadT(TEX_BASE + 'water_4k.png', t => tSpec = t);
+            loadT(TEX_BASE + 'elev_bump_4k.jpg', t => tBump = t);
+            loadT(TEX_BASE + 'fair_clouds_4k.png', t => tClouds = t);
+
+            // Safety timeout — build with whatever loaded
+            setTimeout(() => { if (!earthMesh) { while (loaded < NEED) loaded++; buildEarth(); } }, 14000);
+
+            /* ── HELPERS ──────────────────────────────────────────────────── */
+            function latLonToVec3(lat, lon, r) {
+                const phi = (90 - lat) * Math.PI / 180;
+                const theta = (lon + 180) * Math.PI / 180;
+                return new THREE.Vector3(
+                    -r * Math.sin(phi) * Math.cos(theta),
+                    r * Math.cos(phi),
+                    r * Math.sin(phi) * Math.sin(theta)
+                );
+            }
+
+            function buildEarth() {
+                loading.style.display = 'none';
+
+                /* ── STEP 1 — EARTH MESH WITH PBR SHADER ──────────────────── */
+                earthMat = tDay
+                    ? new THREE.ShaderMaterial({
+                        uniforms: {
+                            dayMap: { value: tDay },
+                            nightMap: { value: tNight || tDay },
+                            specMap: { value: tSpec || null },
+                            sunDir: sunDirUniform,
+                        },
+                        vertexShader: earthVert,
+                        fragmentShader: earthFrag,
+                    })
+                    : new THREE.MeshPhongMaterial({  // graceful fallback
+                        color: 0x0a2040, emissive: 0x001030,
+                        specular: 0x003366, shininess: 30,
+                    });
+
+                earthMesh = new THREE.Mesh(
+                    new THREE.SphereGeometry(GLOBE_R, SEGMENTS, SEGMENTS),
+                    earthMat
+                );
+                earthMesh.rotation.x = TILT;
+                scene.add(earthMesh);
+
+                /* ── STEP 4 — CLOUD LAYER ─────────────────────────────────── */
+                if (tClouds) {
+                    cloudMesh = new THREE.Mesh(
+                        new THREE.SphereGeometry(GLOBE_R * 1.009, SEGMENTS, SEGMENTS),
+                        new THREE.MeshPhongMaterial({
+                            map: tClouds, transparent: true,
+                            opacity: isMobile ? 0.28 : 0.40,
+                            depthWrite: false,
+                        })
+                    );
+                    cloudMesh.rotation.x = TILT;
+                    scene.add(cloudMesh);
+                }
+
+                /* ── STEP 3 — ATMOSPHERIC SCATTERING ─────────────────────── */
+                scene.add(new THREE.Mesh(
+                    new THREE.SphereGeometry(GLOBE_R * 1.065, 64, 64),
+                    new THREE.ShaderMaterial({
+                        uniforms: { sunDir: sunDirUniform },
+                        vertexShader: atmVert, fragmentShader: atmFrag,
+                        transparent: true, depthWrite: false,
+                        blending: THREE.AdditiveBlending,
+                        side: THREE.FrontSide,
+                    })
+                ));
+
+                // Deep-blue outer glow
+                scene.add(new THREE.Mesh(
+                    new THREE.SphereGeometry(GLOBE_R * 1.13, 32, 32),
+                    new THREE.MeshBasicMaterial({
+                        color: 0x0011aa, transparent: true,
+                        opacity: 0.04, side: THREE.BackSide, depthWrite: false,
+                    })
+                ));
+
+                /* ── STEP 11 — LOCATION PIN ───────────────────────────────── */
+                // Parent pin to earthMesh so it auto-follows all rotations
+                pinGroup = new THREE.Group();
+                const pinLocalPos = latLonToVec3(MY_LAT, MY_LON, GLOBE_R + 0.09);
+                pinGroup.position.copy(pinLocalPos);
+
+                // Orient so local +Z points outward (away from sphere centre)
+                const outward = pinLocalPos.clone().normalize();
+                pinGroup.quaternion.setFromUnitVectors(new THREE.Vector3(0, 0, 1), outward);
+
+                earthMesh.add(pinGroup);
+
+                // Glowing neon dot
+                pinDotMat = new THREE.MeshBasicMaterial({ color: 0x00d4ff });
+                const pinDot = new THREE.Mesh(new THREE.SphereGeometry(0.065, 16, 16), pinDotMat);
+                pinDot.userData.isPin = true;
+                pinGroup.add(pinDot);
+
+                // Light beam upward (outward)
+                const beam = new THREE.Mesh(
+                    new THREE.CylinderGeometry(0.004, 0.045, 1.0, 8, 1, true),
+                    new THREE.MeshBasicMaterial({ color: 0x00d4ff, transparent: true, opacity: 0.32, side: THREE.DoubleSide, depthWrite: false })
+                );
+                beam.position.set(0, 0, 0.5);   // 0.5 along outward axis
+                beam.rotation.x = Math.PI / 2;
+                pinGroup.add(beam);
+
+                // 3 staggered pulse rings
+                for (let i = 0; i < 3; i++) {
+                    const rm = new THREE.MeshBasicMaterial({ color: 0x00d4ff, transparent: true, opacity: 0.65, side: THREE.DoubleSide, depthWrite: false });
+                    const rg = new THREE.Mesh(new THREE.RingGeometry(0.09, 0.14, 32), rm);
+                    rg.userData.phaseOff = (i / 3) * Math.PI * 2;
+                    rg.rotation.x = Math.PI / 2;   // face outward (perpendicular to outward axis)
+                    pinGroup.add(rg);
+                    pinRings.push(rg);
+                }
+
+                pinGroup.userData.pinDot = pinDot;
+            }
+
+            /* ══════════════════════════════════════════════════════════════
+               STEP 9 — SHOOTING STARS
+            ══════════════════════════════════════════════════════════════ */
+            const shooters = [];
+            let shootTimer = 5;
+            const MAX_SHOOT = isMobile ? 0 : 2;
+
+            function spawnShooter() {
+                const pts = [];
+                const ox = (Math.random() - 0.5) * 80;
+                const oy = 15 + Math.random() * 30;
+                const oz = -8 - Math.random() * 20;
+                const len = 20 + Math.random() * 15;
+                const dx = -1.0 - Math.random() * 0.5;
+                const dy = -0.6 - Math.random() * 0.5;
+                const dm = Math.hypot(dx, dy);
+                for (let i = 0; i <= 30; i++) {
+                    const t = i / 30;
+                    pts.push(ox + dx / dm * len * t, oy + dy / dm * len * t, oz);
+                }
+                const geo = new THREE.BufferGeometry();
+                geo.setAttribute('position', new THREE.Float32BufferAttribute(pts, 3));
+                const mat = new THREE.LineBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0.95 });
+                const ln = new THREE.Line(geo, mat);
+                scene.add(ln);
+                return { ln, mat, life: 0, maxLife: 0.8 + Math.random() * 0.7, dir: new THREE.Vector3(dx / dm, dy / dm, 0), spd: 0.55 + Math.random() * 0.3 };
+            }
+
+            /* ══════════════════════════════════════════════════════════════
+               MOUSE / TOUCH INTERACTION
+            ══════════════════════════════════════════════════════════════ */
+            let dragging = false, prevMX = 0;
+            let userRotY = 0, rotVelY = 0;
+            let hovering = false, autoRot = true;
+            const rcaster = new THREE.Raycaster();
+            const mv = new THREE.Vector2();
+
+            canvas.addEventListener('mousedown', e => {
+                dragging = true; autoRot = false;
+                prevMX = e.clientX; rotVelY = 0;
+            });
+            window.addEventListener('mouseup', () => {
+                dragging = false;
+                setTimeout(() => autoRot = true, 3200);
+            });
+            canvas.addEventListener('mousemove', e => {
+                const rect = canvas.getBoundingClientRect();
+                mv.set(((e.clientX - rect.left) / rect.width) * 2 - 1,
+                    -((e.clientY - rect.top) / rect.height) * 2 + 1);
+                if (dragging) {
+                    const dx = (e.clientX - prevMX) * 0.006;
+                    userRotY += dx; rotVelY = dx; prevMX = e.clientX;
+                }
+                if (earthMesh && pinGroup) {
+                    rcaster.setFromCamera(mv, camera);
+                    const pinDot = pinGroup.userData.pinDot;
+                    hovering = pinDot ? rcaster.intersectObject(pinDot, true).length > 0 : false;
+                    if (hovering) {
+                        tooltip.style.display = 'block';
+                        tooltip.style.left = (e.clientX - canvas.getBoundingClientRect().left + 14) + 'px';
+                        tooltip.style.top = (e.clientY - canvas.getBoundingClientRect().top - 22) + 'px';
+                    } else tooltip.style.display = 'none';
+                    canvas.style.cursor = hovering ? 'pointer' : (dragging ? 'grabbing' : 'grab');
+                }
+            });
+            canvas.addEventListener('click', () => {
+                if (!hovering) return;
+                let p = 0; const s0 = camera.position.z, t0 = 4.8;
+                (function zi() { p = Math.min(p + 0.045, 1); camera.position.z = s0 + (t0 - s0) * p; if (p < 1) requestAnimationFrame(zi); else setTimeout(() => { let p2 = 0; (function zo() { p2 = Math.min(p2 + 0.022, 1); camera.position.z = t0 + (7.5 - t0) * p2; if (p2 < 1) requestAnimationFrame(zo); })(); }, 1600); })();
+            });
+
+            // Touch
+            let lastTX = null;
+            canvas.addEventListener('touchstart', e => { if (e.touches.length === 1) { lastTX = e.touches[0].clientX; autoRot = false; } });
+            canvas.addEventListener('touchmove', e => { e.preventDefault(); if (e.touches.length === 1 && lastTX !== null) { userRotY += (e.touches[0].clientX - lastTX) * 0.006; lastTX = e.touches[0].clientX; } }, { passive: false });
+            canvas.addEventListener('touchend', () => { lastTX = null; setTimeout(() => autoRot = true, 3200); });
+
+            /* ══════════════════════════════════════════════════════════════
+               STEP 10 — POST PROCESSING (Bloom via dynamic EffectComposer)
+            ══════════════════════════════════════════════════════════════ */
+            let composer = null;
+            const CDN = 'https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js';
+
+            function loadSc(src) {
+                return new Promise((res, rej) => {
+                    if (document.querySelector(`script[src="${src}"]`)) { res(); return; }
+                    const s = document.createElement('script');
+                    s.src = src; s.onload = res; s.onerror = rej;
+                    document.head.appendChild(s);
+                });
+            }
+
+            Promise.all([
+                loadSc(`${CDN}/shaders/LuminosityHighPassShader.js`),
+                loadSc(`${CDN}/shaders/CopyShader.js`),
+            ]).then(() => Promise.all([
+                loadSc(`${CDN}/postprocessing/EffectComposer.js`),
+                loadSc(`${CDN}/postprocessing/RenderPass.js`),
+            ])).then(() => loadSc(`${CDN}/postprocessing/UnrealBloomPass.js`))
+                .then(() => {
+                    if (!THREE.EffectComposer) return;
+                    composer = new THREE.EffectComposer(renderer);
+                    composer.addPass(new THREE.RenderPass(scene, camera));
+                    const bloom = new THREE.UnrealBloomPass(
+                        new THREE.Vector2(container.clientWidth, container.clientHeight),
+                        isMobile ? 0.28 : 0.42,   // strength  — subtle, cinematic
+                        0.38,                      // radius
+                        0.86                       // threshold
+                    );
+                    composer.addPass(bloom);
+                }).catch(() => { /* bloom unavailable — plain render fallback */ });
+
+            /* ── RESIZE ───────────────────────────────────────────────────── */
+            window.addEventListener('resize', () => {
+                const w = container.clientWidth, h = container.clientHeight;
+                camera.aspect = w / h; camera.updateProjectionMatrix();
+                renderer.setSize(w, h);
+                if (composer) composer.setSize(w, h);
+            });
+
+            /* ══════════════════════════════════════════════════════════════
+               MAIN ANIMATION LOOP
+            ══════════════════════════════════════════════════════════════ */
+            let lastNow = performance.now();
+
+            (function animate(now) {
+                requestAnimationFrame(animate);
+                const dt = Math.min((now - lastNow) / 1000, 0.05);
+                lastNow = now;
+                const T = now * 0.001;
+
+                /* ── STEP 5 — REAL-TIME EARTH ROTATION (UTC) ────────────── */
+                const utc = new Date();
+                const utcH = utc.getUTCHours() + utc.getUTCMinutes() / 60 + utc.getUTCSeconds() / 3600;
+                // baseRot: lon=0° faces sun (+X) at UTC 12:00
+                const baseRot = (utcH - 12) * Math.PI / 12;
+
+                if (earthMesh) {
+                    // Inertia
+                    if (!dragging && Math.abs(rotVelY) > 0.00006) {
+                        userRotY += rotVelY; rotVelY *= 0.91;
+                    }
+                    // Auto-rotation (slow cinematic drift)
+                    if (autoRot && !dragging) userRotY += 0.00075 * dt * 60;
+
+                    earthMesh.rotation.y = baseRot + userRotY;
+
+                    /* ── STEP 4 — CLOUD independent slow rotation ──────── */
+                    if (cloudMesh) cloudMesh.rotation.y = baseRot + userRotY + T * 0.006;
+
+                    /* ── STEP 11 — PIN PULSE (pin is child of earthMesh) ── */
+                    if (pinDotMat) pinDotMat.color.setHSL(0.54, 1.0, 0.52 + Math.sin(T * 2.6) * 0.14);
+                    pinRings.forEach(r => {
+                        const ph = (T * 1.9 + r.userData.phaseOff) % (Math.PI * 2);
+                        const prg = ph / (Math.PI * 2);
+                        r.scale.setScalar(1.0 + prg * 2.2);
+                        r.material.opacity = Math.max(0, 0.62 * (1 - prg));
+                    });
+                }
+
+                /* ── STEP 7 — MOON ORBIT ────────────────────────────────── */
+                const ma = T * 0.075;
+                moonMesh.position.set(Math.cos(ma) * 7.2, Math.sin(ma * 0.18) * 0.9, Math.sin(ma) * 7.2);
+                moonMesh.rotation.y += 0.005 * dt * 60;
+
+                /* ── STAR TWINKLE ────────────────────────────────────────── */
+                if (window._globeStarMat) window._globeStarMat.opacity = 0.75 + Math.sin(T * 0.6) * 0.14;
+
+                /* ── SUN CORONA PULSE ────────────────────────────────────── */
+                sunVisual.scale.setScalar(1.0 + Math.sin(T * 1.4) * 0.04);
+
+                /* ── STEP 9 — SHOOTING STARS ────────────────────────────── */
+                if (!isMobile) {
+                    shootTimer -= dt;
+                    if (shootTimer <= 0 && shooters.length < MAX_SHOOT) {
+                        shooters.push(spawnShooter());
+                        shootTimer = 5 + Math.random() * 8;
+                    }
+                    for (let i = shooters.length - 1; i >= 0; i--) {
+                        const ss = shooters[i];
+                        ss.life += dt;
+                        ss.ln.position.addScaledVector(ss.dir, ss.spd * dt * 60);
+                        ss.mat.opacity = Math.sin((ss.life / ss.maxLife) * Math.PI) * 0.95;
+                        if (ss.life >= ss.maxLife) {
+                            scene.remove(ss.ln);
+                            ss.ln.geometry.dispose(); ss.mat.dispose();
+                            shooters.splice(i, 1);
+                        }
+                    }
+                }
+
+                /* ── RENDER ───────────────────────────────────────────────── */
+                if (composer) composer.render();
+                else renderer.render(scene, camera);
+            })(performance.now());
+        }
+    </script>
+</body>
+
+</html>
